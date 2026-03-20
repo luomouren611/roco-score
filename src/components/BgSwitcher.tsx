@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 
 const BACKGROUNDS = [
-  { id: 'sance', name: '三测宣传', src: '/backgrounds/三测宣传海报.jpeg' },
-  { id: 'dingdang', name: '定档宣传', src: '/backgrounds/定档宣传海报.png' },
+  { id: 'sance', name: '三测宣传', src: '/backgrounds/beta-test-poster.jpeg' },
+  { id: 'dingdang', name: '定档宣传', src: '/backgrounds/release-poster.png' },
 ];
 
 const BgSwitcher = () => {

@@ -15,12 +15,11 @@ function getScoreReaction(score: number): ScoreReaction {
     // S级
     return {
       stickers: [
-        { src: '/stickers/daily/闪亮登场.png', name: '闪亮登场' },
-        { src: '/stickers/daily/超赞.png', name: '超赞' },
-        { src: '/stickers/daily/小耶.png', name: '小耶' },
-        { src: '/stickers/dimo/烧起来了.png', name: '烧起来了' },
-        { src: '/stickers/dimo/真香.png', name: '真香' },
-        { src: '/stickers/dimo/比心.png', name: '比心' },
+        { src: '/stickers/daily/shanliang-dengchang.png', name: '闪亮登场' },
+        { src: '/stickers/daily/chaozan.png', name: '超赞' },
+        { src: '/stickers/daily/xiaoye.png', name: '小耶' },
+        { src: '/stickers/daily/taishaole.png', name: '太烧了' },
+        { src: '/stickers/daily/heihei.png', name: '嘿嘿' },
       ],
       messages: [
         '传说级别的存在！这号万中无一！',
@@ -35,11 +34,11 @@ function getScoreReaction(score: number): ScoreReaction {
     // A级
     return {
       stickers: [
-        { src: '/stickers/daily/超赞.png', name: '超赞' },
-        { src: '/stickers/daily/太烧了.png', name: '太烧了' },
-        { src: '/stickers/daily/嘿嘿.png', name: '嘿嘿' },
-        { src: '/stickers/dimo/真香.png', name: '真香' },
-        { src: '/stickers/dimo/比心.png', name: '比心' },
+        { src: '/stickers/daily/chaozan.png', name: '超赞' },
+        { src: '/stickers/daily/taishaole.png', name: '太烧了' },
+        { src: '/stickers/daily/heihei.png', name: '嘿嘿' },
+        { src: '/stickers/daily/shanliang-dengchang.png', name: '闪亮登场' },
+        { src: '/stickers/daily/xiaoye.png', name: '小耶' },
       ],
       messages: [
         'A级史诗号！妥妥的大佬气场！',
@@ -53,11 +52,11 @@ function getScoreReaction(score: number): ScoreReaction {
     // B级
     return {
       stickers: [
-        { src: '/stickers/daily/嘿嘿.png', name: '嘿嘿' },
-        { src: '/stickers/daily/上岸.png', name: '上岸' },
-        { src: '/stickers/daily/莫吉托.png', name: '莫吉托' },
-        { src: '/stickers/dimo/让我看看.png', name: '让我看看' },
-        { src: '/stickers/dimo/让我瞧瞧.png', name: '让我瞧瞧' },
+        { src: '/stickers/daily/heihei.png', name: '嘿嘿' },
+        { src: '/stickers/daily/shangan.png', name: '上岸' },
+        { src: '/stickers/daily/mojito.png', name: '莫吉托' },
+        { src: '/stickers/daily/miaomiao-sikao.png', name: '喵喵思考' },
+        { src: '/stickers/daily/fanfan.png', name: '饭饭' },
       ],
       messages: [
         'B级优秀！这号有不少亮点~',
@@ -71,11 +70,11 @@ function getScoreReaction(score: number): ScoreReaction {
     // C级
     return {
       stickers: [
-        { src: '/stickers/daily/佛系.png', name: '佛系' },
-        { src: '/stickers/daily/搓脸.png', name: '搓脸' },
-        { src: '/stickers/daily/喵喵思考.png', name: '喵喵思考' },
-        { src: '/stickers/dimo/emm.png', name: 'emm' },
-        { src: '/stickers/dimo/我在思考.png', name: '我在思考' },
+        { src: '/stickers/daily/foxi.png', name: '佛系' },
+        { src: '/stickers/daily/cuolian.png', name: '搓脸' },
+        { src: '/stickers/daily/miaomiao-sikao.png', name: '喵喵思考' },
+        { src: '/stickers/daily/touting.png', name: '偷听' },
+        { src: '/stickers/daily/bamai.png', name: '把脉' },
       ],
       messages: [
         'C级普通号，佛系冒险也挺好',
@@ -88,13 +87,12 @@ function getScoreReaction(score: number): ScoreReaction {
   // D级
   return {
     stickers: [
-      { src: '/stickers/daily/急急急.png', name: '急急急' },
-      { src: '/stickers/daily/治不了.png', name: '治不了' },
-      { src: '/stickers/daily/再也不玩抽象了.png', name: '再也不玩抽象了' },
-      { src: '/stickers/daily/压力大.png', name: '压力大' },
-      { src: '/stickers/dimo/求放过.png', name: '求放过' },
-      { src: '/stickers/dimo/大脑过载.png', name: '大脑过载' },
-      { src: '/stickers/dimo/瑟瑟发抖.png', name: '瑟瑟发抖' },
+      { src: '/stickers/daily/jijiji.png', name: '急急急' },
+      { src: '/stickers/daily/zhibuliao.png', name: '治不了' },
+      { src: '/stickers/daily/zaiyebuwanchouxiang.png', name: '再也不玩抽象了' },
+      { src: '/stickers/daily/yalida.png', name: '压力大' },
+      { src: '/stickers/daily/dadan.png', name: '大胆' },
+      { src: '/stickers/daily/wo.png', name: '我？' },
     ],
     messages: [
       'D级路人号...但号不行人行啊！',

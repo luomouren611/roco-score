@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 const TRACKS = [
-  { id: 'cg', name: '风格化CG', src: '/music/风格化CG.wav' },
-  { id: 'wizard', name: '黑巫师之影', src: '/music/黑巫师之影.wav' },
+  { id: 'cg', name: '风格化CG', src: '/music/stylized-cg.wav' },
+  { id: 'wizard', name: '黑巫师之影', src: '/music/dark-wizard-shadow.wav' },
 ];
 
 const MusicPlayer = () => {

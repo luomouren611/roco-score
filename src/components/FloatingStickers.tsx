@@ -3,25 +3,25 @@ import { useState, useEffect, useMemo } from 'react';
 // 从两个系列中选取一些表情包散落在页面两侧
 const STICKER_POOL = [
   // 日常系列
-  { src: '/stickers/daily/小耶.png', name: '小耶' },
-  { src: '/stickers/daily/嘿嘿.png', name: '嘿嘿' },
-  { src: '/stickers/daily/超赞.png', name: '超赞' },
-  { src: '/stickers/daily/佛系.png', name: '佛系' },
-  { src: '/stickers/daily/喵喵思考.png', name: '喵喵思考' },
-  { src: '/stickers/daily/莫吉托.png', name: '莫吉托' },
-  { src: '/stickers/daily/搓脸.png', name: '搓脸' },
-  { src: '/stickers/daily/饭饭.png', name: '饭饭' },
-  { src: '/stickers/daily/偷听.png', name: '偷听' },
-  { src: '/stickers/daily/上岸.png', name: '上岸' },
-  { src: '/stickers/daily/闪亮登场.png', name: '闪亮登场' },
-  { src: '/stickers/daily/20岁.png', name: '20岁' },
-  // 迪莫系列
-  { src: '/stickers/dimo/比心.png', name: '比心' },
-  { src: '/stickers/dimo/真香.png', name: '真香' },
-  { src: '/stickers/dimo/emm.png', name: 'emm' },
-  { src: '/stickers/dimo/让我看看.png', name: '让我看看' },
-  { src: '/stickers/dimo/我在思考.png', name: '我在思考' },
-  { src: '/stickers/dimo/酸了.png', name: '酸了' },
+  { src: '/stickers/daily/xiaoye.png', name: '小耶' },
+  { src: '/stickers/daily/heihei.png', name: '嘿嘿' },
+  { src: '/stickers/daily/chaozan.png', name: '超赞' },
+  { src: '/stickers/daily/foxi.png', name: '佛系' },
+  { src: '/stickers/daily/miaomiao-sikao.png', name: '喵喵思考' },
+  { src: '/stickers/daily/mojito.png', name: '莫吉托' },
+  { src: '/stickers/daily/cuolian.png', name: '搓脸' },
+  { src: '/stickers/daily/fanfan.png', name: '饭饭' },
+  { src: '/stickers/daily/touting.png', name: '偷听' },
+  { src: '/stickers/daily/shangan.png', name: '上岸' },
+  { src: '/stickers/daily/shanliang-dengchang.png', name: '闪亮登场' },
+  { src: '/stickers/daily/20sui.png', name: '20岁' },
+  // 更多日常系列
+  { src: '/stickers/daily/jijiji.png', name: '急急急' },
+  { src: '/stickers/daily/taishaole.png', name: '太烧了' },
+  { src: '/stickers/daily/yalida.png', name: '压力大' },
+  { src: '/stickers/daily/zaima.png', name: '在吗' },
+  { src: '/stickers/daily/baishen.png', name: '拜神' },
+  { src: '/stickers/daily/bamai.png', name: '把脉' },
 ];
 
 interface FloatingItem {

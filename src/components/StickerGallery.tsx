@@ -6,21 +6,11 @@ const STICKER_SERIES = [
     name: '洛克王国的日常',
     folder: '/stickers/daily',
     stickers: [
-      '小耶', '嘿嘿', '超赞', '闪亮登场', '搓脸', '佛系',
-      '喵喵思考', '急急急', '压力大', '在吗', '莫吉托', '饭饭',
-      '端上来', '只吃一口', '收~你~们~来~了~', '大胆！', '我？',
-      '治不了', '把脉', '拜神', '偷听', '太烧了', '上岸',
-      '熬夜冲浪', '20岁', '告到中央', '再也不玩抽象了', '不给糖就捣蛋',
-    ],
-  },
-  {
-    id: 'dimo',
-    name: '迪莫营业中',
-    folder: '/stickers/dimo',
-    stickers: [
-      '比心', '真香', '烧起来了', 'emm', 'what', '让我看看',
-      '让我瞧瞧', '我在思考', '大脑过载', '泪水打转', '酸了',
-      '瑟瑟发抖', '我要上学', '求放过',
+      'xiaoye', 'heihei', 'chaozan', 'shanliang-dengchang', 'cuolian', 'foxi',
+      'miaomiao-sikao', 'jijiji', 'yalida', 'zaima', 'mojito', 'fanfan',
+      'duanshanglai', 'zhichiyikou', 'shounimenlailiao', 'dadan', 'wo',
+      'zhibuliao', 'bamai', 'baishen', 'touting', 'taishaole', 'shangan',
+      'aoyechonglang', '20sui', 'gaodaozhongyang', 'zaiyebuwanchouxiang', 'bugeitangjiu-daolan',
     ],
   },
 ];
