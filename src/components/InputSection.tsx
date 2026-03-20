@@ -1,0 +1,98 @@
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
+
+interface InputSectionProps {
+  onScore: (account: string) => void;
+  isLoading: boolean;
+}
+
+const InputSection = ({ onScore, isLoading }: InputSectionProps) => {
+  const [account, setAccount] = useState('');
+  const [error, setError] = useState('');
+
+  const validateAndScore = () => {
+    const trimmed = account.trim();
+
+    if (!trimmed) {
+      setError('请输入账号');
+      return;
+    }
+
+    if (!/^\d+$/.test(trimmed)) {
+      setError('账号只能包含数字');
+      return;
+    }
+
+    if (trimmed.length < 5 || trimmed.length > 8) {
+      setError('请输入5-8位数字账号');
+      return;
+    }
+
+    setError('');
+    onScore(trimmed);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !isLoading) {
+      validateAndScore();
+    }
+  };
+
+  return (
+    <section className="flex justify-center px-4 mb-8">
+      <div className="rk-card rk-card-glow p-6 w-full max-w-lg">
+        <div className="mb-5">
+          <label className="block text-rk-text-2 text-sm font-medium mb-2">
+            <span className="mr-1.5 opacity-60">🔮</span>
+            输入你的洛克王国账号
+          </label>
+          <input
+            type="text"
+            value={account}
+            onChange={(e) => {
+              setAccount(e.target.value);
+              if (error) setError('');
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder="5-8位数字账号"
+            maxLength={8}
+            className="w-full px-4 py-3 rounded-xl 
+              bg-white/5 border border-rk-purple/20 
+              text-white text-lg placeholder-white/20
+              focus:border-rk-purple/50 focus:bg-white/[0.07]
+              transition-all duration-300"
+            style={{ outline: 'none' }}
+          />
+          {error && (
+            <p className="mt-2 text-red-400 text-sm">
+              {error}
+            </p>
+          )}
+        </div>
+
+        <button
+          onClick={validateAndScore}
+          disabled={isLoading}
+          className="rk-btn-primary w-full py-3 text-base 
+            flex items-center justify-center gap-2
+            cursor-pointer"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              <span>鉴定中...</span>
+            </>
+          ) : (
+            <span>✨ 开始鉴定</span>
+          )}
+        </button>
+
+        <p className="mt-3 text-center text-rk-text-muted text-xs">
+          支持 5~8 位数字账号
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default InputSection;
