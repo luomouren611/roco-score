@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { ScoreResult } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
 import ScoreGauge from './ScoreGauge';
 import DimensionBars from './DimensionBars';
 import TagDisplay from './TagDisplay';
@@ -116,6 +117,7 @@ interface ScorePopupProps {
 const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const { isDark } = useTheme();
 
   const reaction = useMemo(() => {
     const r = getScoreReaction(result.totalScore);
@@ -141,7 +143,10 @@ const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300
-        ${visible ? 'bg-black/60 backdrop-blur-sm' : 'bg-transparent'}`}
+        ${visible
+          ? isDark ? 'bg-black/60 backdrop-blur-sm' : 'bg-black/30 backdrop-blur-sm'
+          : 'bg-transparent'
+        }`}
       onClick={onClose}
     >
       <div
@@ -161,7 +166,7 @@ const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
               <div
                 className="relative w-16 h-16 rounded-full flex items-center justify-center"
                 style={{
-                  backgroundColor: grade.bgColor,
+                  backgroundColor: isDark ? grade.bgColor : `${grade.color}18`,
                   border: `2px solid ${grade.color}`,
                   boxShadow: `0 0 20px ${grade.color}30`,
                 }}
@@ -195,9 +200,10 @@ const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
             </div>
 
             {/* 趣味文案 */}
-            <p className={`mt-3 text-sm text-rk-text-2 text-center px-6 leading-relaxed
+            <p className={`mt-3 text-sm text-center px-6 leading-relaxed
               transition-all duration-400 delay-350
-              ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+              ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
+              ${isDark ? 'text-rk-text-2' : 'text-purple-600/80'}`}>
               {reaction.message}
             </p>
           </div>
@@ -213,12 +219,12 @@ const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
               >
                 {result.totalScore}
               </span>
-              <span className="text-rk-text-muted text-sm">/ 100</span>
+              <span className={`text-sm ${isDark ? 'text-rk-text-muted' : 'text-purple-400/60'}`}>/ 100</span>
             </div>
-            <p className="text-rk-text-3 text-base mt-1 font-medium tracking-wide">
+            <p className={`text-base mt-1 font-medium tracking-wide ${isDark ? 'text-rk-text-3' : 'text-purple-600/80'}`}>
               账号: {result.account}
             </p>
-            <p className="text-rk-text-muted text-xs mt-0.5">
+            <p className={`text-xs mt-0.5 ${isDark ? 'text-rk-text-muted' : 'text-purple-400/60'}`}>
               {grade.description}
             </p>
           </div>
@@ -233,8 +239,11 @@ const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
           <div className="px-5 pb-4">
             <button
               onClick={() => setShowDetails(!showDetails)}
-              className="w-full text-center text-xs text-rk-text-muted hover:text-rk-text-3
-                transition-colors py-2 border-t border-rk-purple/10"
+              className={`w-full text-center text-xs transition-colors py-2 ${
+                isDark
+                  ? 'text-rk-text-muted hover:text-rk-text-3 border-t border-rk-purple/10'
+                  : 'text-purple-400/60 hover:text-purple-600 border-t border-purple-200/30'
+              }`}
             >
               {showDetails ? '收起详情 ▲' : '📊 查看详细评分 (7项维度)'}
             </button>
@@ -251,10 +260,12 @@ const ScorePopup = ({ result, show, onClose }: ScorePopupProps) => {
         <button
           onClick={onClose}
           className={`mt-4 w-full py-2.5 rounded-full text-sm font-medium
-            bg-rk-purple/15 text-rk-text-3 hover:bg-rk-purple/25 hover:text-white
-            border border-rk-purple/15 hover:border-rk-purple/25
             transition-all duration-300 delay-500
-            ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+            ${isDark
+              ? 'bg-rk-purple/15 text-rk-text-3 hover:bg-rk-purple/25 hover:text-white border border-rk-purple/15 hover:border-rk-purple/25'
+              : 'bg-white/50 text-purple-500/70 hover:bg-white/70 hover:text-purple-700 border border-purple-200/30 hover:border-purple-300/40'
+            }`}
         >
           关闭
         </button>

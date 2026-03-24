@@ -1,5 +1,6 @@
 import { useCountUp } from '../utils/animation';
 import { AccountGrade } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface ScoreGaugeProps {
   score: number;
@@ -9,6 +10,7 @@ interface ScoreGaugeProps {
 
 const ScoreGauge = ({ score, show, grade }: ScoreGaugeProps) => {
   const displayScore = useCountUp(score, 1500, show);
+  const { isDark } = useTheme();
 
   const color = grade?.color || getScoreColor(score);
 
@@ -28,7 +30,7 @@ const ScoreGauge = ({ score, show, grade }: ScoreGaugeProps) => {
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="rgba(160, 130, 255, 0.08)"
+            stroke={isDark ? "rgba(160, 130, 255, 0.08)" : "rgba(160, 130, 255, 0.12)"}
             strokeWidth={strokeWidth}
           />
           <circle
@@ -55,14 +57,14 @@ const ScoreGauge = ({ score, show, grade }: ScoreGaugeProps) => {
           >
             {displayScore}
           </span>
-          <span className="text-rk-text-muted text-xs mt-1">
+          <span className={`text-xs mt-1 ${isDark ? 'text-rk-text-muted' : 'text-purple-400/60'}`}>
             / 100
           </span>
           {grade && (
             <span
               className="text-xs mt-1.5 px-2.5 py-0.5 rounded-full font-medium"
               style={{
-                backgroundColor: grade.bgColor,
+                backgroundColor: isDark ? grade.bgColor : `${grade.color}18`,
                 color: grade.color,
                 border: `1px solid ${grade.color}30`,
                 boxShadow: `0 0 8px ${grade.color}15`,

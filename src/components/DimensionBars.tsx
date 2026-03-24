@@ -1,4 +1,5 @@
 import { ScoreDimension } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface DimensionBarsProps {
   dimensions: ScoreDimension[];
@@ -16,9 +17,11 @@ const dimensionColors = [
 ];
 
 const DimensionBars = ({ dimensions, show }: DimensionBarsProps) => {
+  const { isDark } = useTheme();
+
   return (
     <div className="rk-card p-4 mb-4">
-      <h3 className="text-white font-semibold text-xs mb-3">
+      <h3 className={`font-semibold text-xs mb-3 ${isDark ? 'text-white' : 'text-purple-800'}`}>
         ⚔ 各维度评分 ({dimensions.length}项)
       </h3>
 
@@ -30,7 +33,7 @@ const DimensionBars = ({ dimensions, show }: DimensionBarsProps) => {
           return (
             <div key={dim.name}>
               <div className="flex justify-between items-center mb-0.5">
-                <span className="text-rk-text-3 text-xs">
+                <span className={`text-xs ${isDark ? 'text-rk-text-3' : 'text-purple-500/70'}`}>
                   {dim.name}
                 </span>
                 <span
@@ -41,7 +44,7 @@ const DimensionBars = ({ dimensions, show }: DimensionBarsProps) => {
                 </span>
               </div>
 
-              <div className="w-full h-1.5 rounded-full bg-rk-purple/10 overflow-hidden">
+              <div className={`w-full h-1.5 rounded-full overflow-hidden ${isDark ? 'bg-rk-purple/10' : 'bg-purple-200/30'}`}>
                 <div
                   className={`h-full rounded-full bg-gradient-to-r ${colors.bar} animate-bar-fill`}
                   style={{
@@ -51,7 +54,7 @@ const DimensionBars = ({ dimensions, show }: DimensionBarsProps) => {
                 />
               </div>
 
-              <p className="text-rk-text-muted text-[10px] mt-0.5 truncate">
+              <p className={`text-[10px] mt-0.5 truncate ${isDark ? 'text-rk-text-muted' : 'text-purple-400/60'}`}>
                 {dim.description}
               </p>
             </div>

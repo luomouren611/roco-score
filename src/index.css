@@ -4,6 +4,84 @@
 
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
+/* ============================
+   CSS 变量 — 暗色主题（默认）
+   ============================ */
+:root,
+.dark {
+  --rk-body-color: #FFFFFF;
+  --rk-overlay-gradient: linear-gradient(
+    180deg,
+    rgba(8, 15, 35, 0.15) 0%,
+    rgba(12, 20, 50, 0.45) 30%,
+    rgba(15, 10, 40, 0.7) 60%,
+    rgba(10, 8, 30, 0.9) 100%
+  );
+  --rk-glow-1: rgba(120, 80, 255, 0.06);
+  --rk-glow-2: rgba(80, 200, 255, 0.05);
+  --rk-glow-3: rgba(255, 170, 50, 0.04);
+  --rk-card-bg: rgba(18, 15, 45, 0.55);
+  --rk-card-border: rgba(160, 130, 255, 0.12);
+  --rk-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  --rk-card-inset: rgba(255, 255, 255, 0.05);
+  --rk-btn-gradient: linear-gradient(135deg, #7C5CFC, #5B8DEF);
+  --rk-btn-hover-gradient: linear-gradient(135deg, #8B6EFF, #6B9DFF);
+  --rk-btn-shadow: 0 2px 12px rgba(124, 92, 252, 0.35);
+  --rk-btn-hover-shadow: 0 4px 20px rgba(124, 92, 252, 0.5);
+  --rk-btn-disabled-bg: rgba(80, 70, 120, 0.5);
+  --rk-btn-disabled-color: rgba(255, 255, 255, 0.4);
+  --rk-divider-color: rgba(160, 130, 255, 0.08);
+  --rk-scrollbar-color: rgba(160, 130, 255, 0.2);
+  --rk-scrollbar-hover: rgba(160, 130, 255, 0.35);
+  --rk-border-glow-start: rgba(160, 130, 255, 0.12);
+  --rk-border-glow-mid: rgba(160, 130, 255, 0.25);
+  --rk-border-glow-shadow-mid: 0 4px 24px rgba(100, 80, 200, 0.15);
+  --rk-magic-glow-text-1: rgba(160, 130, 255, 0.3);
+  --rk-magic-glow-text-2: rgba(100, 180, 255, 0.15);
+  --rk-magic-glow-text-1-mid: rgba(160, 130, 255, 0.5);
+  --rk-magic-glow-text-2-mid: rgba(100, 180, 255, 0.25);
+}
+
+/* ============================
+   CSS 变量 — 亮色主题
+   ============================ */
+.light {
+  --rk-body-color: #2D2456;
+  --rk-overlay-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(240, 235, 255, 0.3) 30%,
+    rgba(230, 220, 250, 0.45) 60%,
+    rgba(220, 210, 245, 0.6) 100%
+  );
+  --rk-glow-1: rgba(160, 130, 255, 0.08);
+  --rk-glow-2: rgba(100, 200, 255, 0.06);
+  --rk-glow-3: rgba(255, 200, 80, 0.05);
+  --rk-card-bg: rgba(255, 255, 255, 0.65);
+  --rk-card-border: rgba(160, 130, 255, 0.18);
+  --rk-card-shadow: 0 4px 24px rgba(120, 100, 200, 0.12);
+  --rk-card-inset: rgba(255, 255, 255, 0.8);
+  --rk-btn-gradient: linear-gradient(135deg, #7C5CFC, #5B8DEF);
+  --rk-btn-hover-gradient: linear-gradient(135deg, #8B6EFF, #6B9DFF);
+  --rk-btn-shadow: 0 2px 12px rgba(124, 92, 252, 0.25);
+  --rk-btn-hover-shadow: 0 4px 20px rgba(124, 92, 252, 0.35);
+  --rk-btn-disabled-bg: rgba(180, 170, 210, 0.4);
+  --rk-btn-disabled-color: rgba(100, 80, 150, 0.5);
+  --rk-divider-color: rgba(160, 130, 255, 0.12);
+  --rk-scrollbar-color: rgba(160, 130, 255, 0.15);
+  --rk-scrollbar-hover: rgba(160, 130, 255, 0.3);
+  --rk-border-glow-start: rgba(160, 130, 255, 0.18);
+  --rk-border-glow-mid: rgba(160, 130, 255, 0.32);
+  --rk-border-glow-shadow-mid: 0 4px 24px rgba(120, 100, 220, 0.12);
+  --rk-magic-glow-text-1: rgba(120, 80, 240, 0.2);
+  --rk-magic-glow-text-2: rgba(80, 150, 255, 0.1);
+  --rk-magic-glow-text-1-mid: rgba(120, 80, 240, 0.35);
+  --rk-magic-glow-text-2-mid: rgba(80, 150, 255, 0.2);
+}
+
+/* ============================
+   全局基础样式
+   ============================ */
 * {
   margin: 0;
   padding: 0;
@@ -18,24 +96,20 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
-  color: #FFFFFF;
+  color: var(--rk-body-color);
   overflow-x: hidden;
+  transition: color 0.4s ease;
 }
 
-/* 背景遮罩 - 奇幻冒险渐变 */
+/* 背景遮罩 */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 15, 35, 0.15) 0%,
-    rgba(12, 20, 50, 0.45) 30%,
-    rgba(15, 10, 40, 0.7) 60%,
-    rgba(10, 8, 30, 0.9) 100%
-  );
+  background: var(--rk-overlay-gradient);
   z-index: 0;
   pointer-events: none;
+  transition: background 0.4s ease;
 }
 
 /* 魔法光晕遮罩 */
@@ -44,11 +118,12 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(120, 80, 255, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(80, 200, 255, 0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 50% 90%, rgba(255, 170, 50, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 40% at 20% 10%, var(--rk-glow-1) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, var(--rk-glow-2) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 90%, var(--rk-glow-3) 0%, transparent 60%);
   z-index: 0;
   pointer-events: none;
+  transition: background 0.4s ease;
 }
 
 #root {
@@ -66,19 +141,21 @@ body::after {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(160, 130, 255, 0.2);
+  background: var(--rk-scrollbar-color);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(160, 130, 255, 0.35);
+  background: var(--rk-scrollbar-hover);
 }
 
 input:focus {
   outline: none;
 }
 
-/* 进度条动画 */
+/* ============================
+   进度条动画
+   ============================ */
 @keyframes bar-fill {
   0% { width: 0%; }
   100% { width: var(--bar-width); }
@@ -88,27 +165,32 @@ input:focus {
   animation: bar-fill 1s ease-out forwards;
 }
 
-/* 卡片 - 奇幻半透明毛玻璃 */
+/* ============================
+   卡片 - 毛玻璃风
+   ============================ */
 .rk-card {
-  background: rgba(18, 15, 45, 0.55);
+  background: var(--rk-card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(160, 130, 255, 0.12);
+  border: 1px solid var(--rk-card-border);
   border-radius: 1rem;
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    var(--rk-card-shadow),
+    inset 0 1px 0 var(--rk-card-inset);
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* 按钮 - 魔法水晶风 */
+/* ============================
+   按钮 - 魔法水晶风
+   ============================ */
 .rk-btn-primary {
-  background: linear-gradient(135deg, #7C5CFC, #5B8DEF);
+  background: var(--rk-btn-gradient);
   color: #FFFFFF;
   border: none;
   border-radius: 100px;
   font-weight: 700;
   box-shadow:
-    0 2px 12px rgba(124, 92, 252, 0.35),
+    var(--rk-btn-shadow),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.25s ease;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -127,9 +209,9 @@ input:focus {
 }
 
 .rk-btn-primary:hover {
-  background: linear-gradient(135deg, #8B6EFF, #6B9DFF);
+  background: var(--rk-btn-hover-gradient);
   box-shadow:
-    0 4px 20px rgba(124, 92, 252, 0.5),
+    var(--rk-btn-hover-shadow),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
 }
@@ -144,9 +226,9 @@ input:focus {
 }
 
 .rk-btn-primary:disabled {
-  background: rgba(80, 70, 120, 0.5);
+  background: var(--rk-btn-disabled-bg);
   box-shadow: none;
-  color: rgba(255,255,255,0.4);
+  color: var(--rk-btn-disabled-color);
   cursor: not-allowed;
 }
 
@@ -154,13 +236,17 @@ input:focus {
   display: none;
 }
 
-/* 分隔线 */
+/* ============================
+   分隔线
+   ============================ */
 .rk-divider {
   height: 1px;
-  background: rgba(160, 130, 255, 0.08);
+  background: var(--rk-divider-color);
 }
 
-/* 弹窗动画 */
+/* ============================
+   弹窗动画
+   ============================ */
 @keyframes scale-in {
   0% { transform: scale(0.95); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
@@ -170,20 +256,38 @@ input:focus {
   animation: scale-in 0.2s ease-out forwards;
 }
 
-/* 魔法光标题动画 */
+/* ============================
+   魔法光标题动画
+   ============================ */
 @keyframes magic-glow {
-  0%, 100% { text-shadow: 0 0 8px rgba(160, 130, 255, 0.3), 0 0 16px rgba(100, 180, 255, 0.15); }
-  50% { text-shadow: 0 0 12px rgba(160, 130, 255, 0.5), 0 0 24px rgba(100, 180, 255, 0.25); }
+  0%, 100% {
+    text-shadow:
+      0 0 8px var(--rk-magic-glow-text-1),
+      0 0 16px var(--rk-magic-glow-text-2);
+  }
+  50% {
+    text-shadow:
+      0 0 12px var(--rk-magic-glow-text-1-mid),
+      0 0 24px var(--rk-magic-glow-text-2-mid);
+  }
 }
 
 .magic-title {
   animation: magic-glow 3s ease-in-out infinite;
 }
 
-/* 魔法边框呼吸动画 */
+/* ============================
+   魔法边框呼吸动画
+   ============================ */
 @keyframes border-glow {
-  0%, 100% { border-color: rgba(160, 130, 255, 0.12); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-  50% { border-color: rgba(160, 130, 255, 0.25); box-shadow: 0 4px 24px rgba(100, 80, 200, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+  0%, 100% {
+    border-color: var(--rk-border-glow-start);
+    box-shadow: var(--rk-card-shadow), inset 0 1px 0 var(--rk-card-inset);
+  }
+  50% {
+    border-color: var(--rk-border-glow-mid);
+    box-shadow: var(--rk-border-glow-shadow-mid), inset 0 1px 0 var(--rk-card-inset);
+  }
 }
 
 .rk-card-glow {

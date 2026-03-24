@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const rules = [
   { name: '位数稀有度', maxScore: 30, icon: '📜', description: '账号位数越少越稀有。5位满分30，6位20，7位10，8位5。' },
@@ -11,15 +12,18 @@ const rules = [
 
 const RulesSection = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isDark } = useTheme();
 
   return (
     <section className="flex justify-center px-4 mb-8">
       <div className="rk-card w-full max-w-lg overflow-hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-5 py-3.5 flex items-center justify-between
-            text-rk-text-3 text-sm font-medium hover:text-rk-text-2
-            transition-colors cursor-pointer"
+          className={`w-full px-5 py-3.5 flex items-center justify-between text-sm font-medium transition-colors cursor-pointer ${
+            isDark
+              ? 'text-rk-text-3 hover:text-rk-text-2'
+              : 'text-purple-500/70 hover:text-purple-700'
+          }`}
         >
           <span>📖 鉴定规则</span>
           {isOpen ? (
@@ -41,13 +45,13 @@ const RulesSection = () => {
               <div key={rule.name} className="flex items-start gap-3">
                 <span className="text-xs mt-0.5 shrink-0 w-10 text-right">
                   <span className="mr-0.5">{rule.icon}</span>
-                  <span className="text-rk-purple-light font-semibold">{rule.maxScore}</span>
+                  <span className={`font-semibold ${isDark ? 'text-rk-purple-light' : 'text-purple-500'}`}>{rule.maxScore}</span>
                 </span>
                 <div>
-                  <span className="text-white/80 text-sm font-medium">
+                  <span className={`text-sm font-medium ${isDark ? 'text-white/80' : 'text-purple-800/80'}`}>
                     {rule.name}
                   </span>
-                  <p className="text-rk-text-muted text-xs mt-0.5 leading-relaxed">
+                  <p className={`text-xs mt-0.5 leading-relaxed ${isDark ? 'text-rk-text-muted' : 'text-purple-400/70'}`}>
                     {rule.description}
                   </p>
                 </div>

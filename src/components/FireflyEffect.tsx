@@ -1,15 +1,26 @@
 import { useMemo } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const FireflyEffect = () => {
+  const { isDark } = useTheme();
+
   const particles = useMemo(() => {
-    // 魔法粒子：紫色+蓝色+金色混合
-    const colors = [
-      'rgba(160, 130, 255, 0.7)',   // 紫色
-      'rgba(124, 92, 252, 0.6)',    // 深紫
-      'rgba(80, 200, 255, 0.6)',    // 青蓝
-      'rgba(255, 209, 81, 0.5)',    // 金色
-      'rgba(160, 200, 255, 0.5)',   // 淡蓝
+    // 暗色：紫蓝金  |  亮色：柔粉蓝紫
+    const darkColors = [
+      'rgba(160, 130, 255, 0.7)',
+      'rgba(124, 92, 252, 0.6)',
+      'rgba(80, 200, 255, 0.6)',
+      'rgba(255, 209, 81, 0.5)',
+      'rgba(160, 200, 255, 0.5)',
     ];
+    const lightColors = [
+      'rgba(160, 130, 255, 0.5)',
+      'rgba(200, 160, 255, 0.4)',
+      'rgba(120, 200, 255, 0.35)',
+      'rgba(255, 180, 120, 0.35)',
+      'rgba(255, 150, 200, 0.3)',
+    ];
+    const colors = isDark ? darkColors : lightColors;
 
     return Array.from({ length: 20 }, (_, i) => ({
       id: i,
@@ -18,11 +29,11 @@ const FireflyEffect = () => {
       size: Math.random() * 4 + 2,
       duration: Math.random() * 10 + 8,
       delay: Math.random() * 12,
-      opacity: Math.random() * 0.4 + 0.05,
+      opacity: isDark ? (Math.random() * 0.4 + 0.05) : (Math.random() * 0.3 + 0.05),
       color: colors[Math.floor(Math.random() * colors.length)],
       glowSize: Math.random() * 6 + 3,
     }));
-  }, []);
+  }, [isDark]);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">

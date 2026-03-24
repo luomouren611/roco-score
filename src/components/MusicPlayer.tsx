@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const TRACKS = [
   { id: 'cg', name: '风格化CG', src: '/music/stylized-cg.wav' },
@@ -13,6 +14,7 @@ const MusicPlayer = () => {
   const [expanded, setExpanded] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const animationRef = useRef<number>();
+  const { isDark } = useTheme();
 
   const track = TRACKS[currentTrack];
 
@@ -98,11 +100,15 @@ const MusicPlayer = () => {
       <div className={`fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ${expanded ? 'translate-y-0' : 'translate-y-[calc(100%-48px)]'}`}>
         {/* 迷你条 */}
         <div
-          className="h-12 bg-rk-bg-dark/90 backdrop-blur-md border-t border-rk-purple/10 flex items-center px-4 gap-3 cursor-pointer"
+          className={`h-12 backdrop-blur-md flex items-center px-4 gap-3 cursor-pointer ${
+            isDark
+              ? 'bg-rk-bg-dark/90 border-t border-rk-purple/10'
+              : 'bg-white/70 border-t border-purple-200/30'
+          }`}
           onClick={() => setExpanded(!expanded)}
         >
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-rk-text-3 truncate">
+            <p className={`text-xs truncate ${isDark ? 'text-rk-text-3' : 'text-purple-500/70'}`}>
               🎵 {track.name}
             </p>
           </div>
@@ -129,16 +135,20 @@ const MusicPlayer = () => {
             )}
           </button>
 
-          <span className={`text-rk-text-muted text-[10px] transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}>
+          <span className={`text-[10px] transition-transform duration-200 ${expanded ? 'rotate-180' : ''} ${isDark ? 'text-rk-text-muted' : 'text-purple-300/60'}`}>
             ▲
           </span>
         </div>
 
         {/* 展开面板 */}
-        <div className="bg-rk-bg-dark/95 backdrop-blur-md border-t border-rk-purple/10 px-4 py-3">
+        <div className={`backdrop-blur-md px-4 py-3 ${
+          isDark
+            ? 'bg-rk-bg-dark/95 border-t border-rk-purple/10'
+            : 'bg-white/80 border-t border-purple-200/30'
+        }`}>
           <div className="mb-3">
             <div
-              className="h-1 bg-rk-purple/10 rounded-full cursor-pointer overflow-hidden"
+              className={`h-1 rounded-full cursor-pointer overflow-hidden ${isDark ? 'bg-rk-purple/10' : 'bg-purple-200/30'}`}
               onClick={handleSeek}
             >
               <div
@@ -149,7 +159,7 @@ const MusicPlayer = () => {
                 }}
               />
             </div>
-            <div className="flex justify-between text-[10px] text-rk-text-muted mt-1">
+            <div className={`flex justify-between text-[10px] mt-1 ${isDark ? 'text-rk-text-muted' : 'text-purple-300/60'}`}>
               <span>{formatTime(progress)}</span>
               <span>{formatTime(duration)}</span>
             </div>
@@ -162,13 +172,17 @@ const MusicPlayer = () => {
                 onClick={() => switchTrack(idx)}
                 className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-colors ${
                   currentTrack === idx
-                    ? 'bg-rk-purple/15 text-rk-purple-light'
-                    : 'text-rk-text-muted hover:bg-white/5'
+                    ? isDark
+                      ? 'bg-rk-purple/15 text-rk-purple-light'
+                      : 'bg-purple-100/60 text-purple-600'
+                    : isDark
+                      ? 'text-rk-text-muted hover:bg-white/5'
+                      : 'text-purple-400/60 hover:bg-purple-50/50'
                 }`}
               >
                 {t.name}
                 {currentTrack === idx && isPlaying && (
-                  <span className="ml-2 text-rk-text-muted">播放中</span>
+                  <span className={`ml-2 ${isDark ? 'text-rk-text-muted' : 'text-purple-300/60'}`}>播放中</span>
                 )}
               </button>
             ))}

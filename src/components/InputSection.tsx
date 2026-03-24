@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface InputSectionProps {
   onScore: (account: string) => void;
@@ -9,6 +10,7 @@ interface InputSectionProps {
 const InputSection = ({ onScore, isLoading }: InputSectionProps) => {
   const [account, setAccount] = useState('');
   const [error, setError] = useState('');
+  const { isDark } = useTheme();
 
   const validateAndScore = () => {
     const trimmed = account.trim();
@@ -42,7 +44,7 @@ const InputSection = ({ onScore, isLoading }: InputSectionProps) => {
     <section className="flex justify-center px-4 mb-8">
       <div className="rk-card rk-card-glow p-6 w-full max-w-lg">
         <div className="mb-5">
-          <label className="block text-rk-text-2 text-sm font-medium mb-2">
+          <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-rk-text-2' : 'text-purple-600/80'}`}>
             <span className="mr-1.5 opacity-60">🔮</span>
             输入你的洛克王国账号
           </label>
@@ -56,15 +58,15 @@ const InputSection = ({ onScore, isLoading }: InputSectionProps) => {
             onKeyDown={handleKeyDown}
             placeholder="5-8位数字账号"
             maxLength={8}
-            className="w-full px-4 py-3 rounded-xl 
-              bg-white/5 border border-rk-purple/20 
-              text-white text-lg placeholder-white/20
-              focus:border-rk-purple/50 focus:bg-white/[0.07]
-              transition-all duration-300"
+            className={`w-full px-4 py-3 rounded-xl text-lg transition-all duration-300 ${
+              isDark
+                ? 'bg-white/5 border border-rk-purple/20 text-white placeholder-white/20 focus:border-rk-purple/50 focus:bg-white/[0.07]'
+                : 'bg-white/60 border border-purple-200/50 text-purple-900 placeholder-purple-300/40 focus:border-purple-400/60 focus:bg-white/80'
+            }`}
             style={{ outline: 'none' }}
           />
           {error && (
-            <p className="mt-2 text-red-400 text-sm">
+            <p className={`mt-2 text-sm ${isDark ? 'text-red-400' : 'text-red-500'}`}>
               {error}
             </p>
           )}
@@ -87,7 +89,7 @@ const InputSection = ({ onScore, isLoading }: InputSectionProps) => {
           )}
         </button>
 
-        <p className="mt-3 text-center text-rk-text-muted text-xs">
+        <p className={`mt-3 text-center text-xs ${isDark ? 'text-rk-text-muted' : 'text-purple-400/60'}`}>
           支持 5~8 位数字账号
         </p>
       </div>
